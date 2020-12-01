@@ -1,0 +1,25 @@
+micronaut:
+  application:
+    name: apiChaletSmart
+  server:
+    cors:
+      enabled: true
+
+datasources:
+  default:
+    packages-to-scan:
+      - 'com.api.smart.chalet.persistence.entities'
+    url: jdbc:postgresql://chalet-smart.cr3ftq48qvcj.us-east-2.rds.amazonaws.com:5432/postgres
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    schema-generate: CREATE_DROP
+    dialect: POSTGRES
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
