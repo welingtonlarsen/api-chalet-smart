@@ -1,5 +1,5 @@
 applicationType: default
-defaultPackage: com.api.smart.chalet
+defaultPackage: br.com.chaletSmart
 testFramework: junit
 sourceLanguage: kotlin
 buildTool: gradle

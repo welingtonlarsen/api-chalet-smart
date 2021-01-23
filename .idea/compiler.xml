@@ -4,8 +4,8 @@
     <annotationProcessing>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
-        <option name="micronaut.processing.annotations" value="com.api.smart.chalet.*" />
-        <option name="micronaut.processing.group" value="com.api.smart.chalet" />
+        <option name="micronaut.processing.annotations" value="br.com.chaletSmart.*" />
+        <option name="micronaut.processing.group" value="br.com.chaletSmart" />
         <option name="micronaut.processing.incremental" value="true" />
         <option name="micronaut.processing.module" value="api-chalet-smart" />
         <processorPath useClasspath="false">
@@ -33,8 +33,8 @@
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
-        <option name="micronaut.processing.annotations" value="com.api.smart.chalet.*" />
-        <option name="micronaut.processing.group" value="com.api.smart.chalet" />
+        <option name="micronaut.processing.annotations" value="br.com.chaletSmart.*" />
+        <option name="micronaut.processing.group" value="br.com.chaletSmart" />
         <option name="micronaut.processing.incremental" value="true" />
         <option name="micronaut.processing.module" value="api-chalet-smart" />
         <processorPath useClasspath="false">

@@ -7,17 +7,18 @@ micronaut:
 
 datasources:
   default:
-    packages-to-scan:
-      - 'com.api.smart.chalet.persistence.entities'
-    url: jdbc:postgresql://chalet-smart.cr3ftq48qvcj.us-east-2.rds.amazonaws.com:5432/postgres
-    driverClassName: org.postgresql.Driver
-    username: postgres
-    password: postgres
-    schema-generate: CREATE_DROP
     dialect: POSTGRES
+    driverClassName: org.postgresql.Driver
+    password: secret
+    schema-generate: CREATE_DROP
+    url: jdbc:postgresql://localhost:5432/chaletSmart
+    username: postgres
 
 jpa:
   default:
+    compile-time-hibernate-proxies: true
+    entity-scan:
+      packages: 'br.com.chaletSmart.domain.register.model'
     properties:
       hibernate:
         hbm2ddl:
