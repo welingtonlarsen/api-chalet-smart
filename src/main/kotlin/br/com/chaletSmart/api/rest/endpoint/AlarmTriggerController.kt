@@ -1,7 +1,7 @@
 package br.com.chaletSmart.api.rest.endpoint
 
-import br.com.chaletSmart.domain.register.model.AlarmTriggerEntity
-import br.com.chaletSmart.domain.register.useCase.AlarmTriggerService
+import br.com.chaletSmart.domain.register.model.AlarmTriggeredEntity
+import br.com.chaletSmart.domain.register.useCase.AlarmTriggeredService
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.annotation.Controller
@@ -10,17 +10,17 @@ import io.micronaut.http.annotation.Post
 import javax.inject.Inject
 
 @Controller("/alarm")
-class AlarmTriggerController(@Inject private val alarmTriggerService: AlarmTriggerService) {
+class AlarmTriggerController(@Inject private val alarmTriggeredService: AlarmTriggeredService) {
 
     @Get
-    fun findAllAlarmsTriggered(): HttpResponse<List<AlarmTriggerEntity>> {
-        val allAlarmsTriggered = alarmTriggerService.findAllAlarmTriggred()
+    fun findAllAlarmsTriggered(): HttpResponse<List<AlarmTriggeredEntity>> {
+        val allAlarmsTriggered = alarmTriggeredService.findAllAlarmTriggered()
         return HttpResponse.ok(allAlarmsTriggered)
     }
 
     @Post
     fun triggerAlarm(): HttpStatus {
-        alarmTriggerService.triggerAlarm()
+        alarmTriggeredService.triggerAlarm()
         return HttpStatus.ACCEPTED
     }
 }

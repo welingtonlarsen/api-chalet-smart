@@ -1,10 +1,10 @@
 package br.com.chaletSmart.api.rest.useCase
 
-import br.com.chaletSmart.domain.register.enums.ConsumptionType
-import br.com.chaletSmart.domain.register.model.ConsumptionTimeCommand
-import br.com.chaletSmart.domain.register.model.ConsumptionTimeEntity
+import br.com.chaletSmart.domain.register.enums.SwitcherType
+import br.com.chaletSmart.domain.register.model.SaveSwitcherTriggeredCommand
+import br.com.chaletSmart.domain.register.model.SwitcherTriggeredEntity
 import br.com.chaletSmart.domain.register.repository.ConsumptionTimeRepository
-import br.com.chaletSmart.domain.register.useCase.ConsumptionTimeService
+import br.com.chaletSmart.domain.register.useCase.SwitcherTriggeredService
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -12,18 +12,18 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ConsumptionTimeServiceImpl(
+class SwitcherTriggeredServiceImpl(
     @Inject
     private val consumptionTimeRepository: ConsumptionTimeRepository
-) : ConsumptionTimeService {
+) : SwitcherTriggeredService {
 
-    override fun turnOnTheLight(consumptionType: ConsumptionType) {
-        var consumptionTimeEntity = ConsumptionTimeEntity(ConsumptionTimeCommand(consumptionType))
+    override fun turnOnTheLight(switcherType: SwitcherType) {
+        var consumptionTimeEntity = SwitcherTriggeredEntity(SaveSwitcherTriggeredCommand(switcherType))
         consumptionTimeRepository.save(consumptionTimeEntity)
     }
 
-    override fun turnOffTheLight(consumptionType: ConsumptionType) {
-        var consumptionTimeEntity = consumptionTimeRepository.findByConsumptionTypeOrderByIdDesc(consumptionType)
+    override fun turnOffTheLight(switcherType: SwitcherType) {
+        var consumptionTimeEntity = consumptionTimeRepository.findBySwitcherTypeOrderByIdDesc(switcherType)
         if (consumptionTimeEntity.finalDateTime == null) {
             consumptionTimeEntity.finalDateTime = LocalDateTime.now()
             consumptionTimeEntity.calculateTotalTime()
@@ -31,7 +31,7 @@ class ConsumptionTimeServiceImpl(
         }
     }
 
-    override fun getTotalSecondsOfAllConsumptions(): Long {
+    override fun getTotalSecondsOfAllSwitchersTriggered(): Long {
         var totalSeconds = 0L
         consumptionTimeRepository.findAll()
             .filter { it.finalDateTime != null && it.initialDateTime != null }
@@ -39,13 +39,13 @@ class ConsumptionTimeServiceImpl(
         return totalSeconds
     }
 
-    override fun findAllConsumptionTime(): List<ConsumptionTimeEntity> {
+    override fun findAllSwitchersTriggered(): List<SwitcherTriggeredEntity> {
         return consumptionTimeRepository.findAll().toList().filter {
-            it.finalDateTime != null && it.consumptionType != null && it.totalTime != null
+            it.finalDateTime != null && it.switcherType != null && it.totalTime != null
         }
     }
 
-    override fun findAllConsumptionTimeGroupedByDate(): Map<LocalDate, Long> {
+    override fun findAllSwitchersTriggeredGroupedByDate(): Map<LocalDate, Long> {
         val allConsumptionsTime = consumptionTimeRepository.findAll().toList()
         var consumptionsByDate: MutableMap<LocalDate, Long> = mutableMapOf()
 

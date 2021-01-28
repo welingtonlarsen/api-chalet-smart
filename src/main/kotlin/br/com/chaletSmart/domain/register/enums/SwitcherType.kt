@@ -1,6 +1,6 @@
 package br.com.chaletSmart.domain.register.enums
 
-enum class ConsumptionType(val consumptionType: String) {
+enum class SwitcherType(val consumptionType: String) {
     CHALET_PRINCIPAL_ILUMINACAO_QUARTO("CHALET_PRINCIPAL_ILUMINACAO_QUARTO"),
     CHALET_PRINCIPAL_ILUMINACAO_COZINHA("CHALET_PRINCIPAL_ILUMINACAO_COZINHA"),
     CHALET_PRINCIPAL_ILUMINACAO_SALA("CHALET_PRINCIPAL_ILUMINACAO_SALA"),
